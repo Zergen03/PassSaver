@@ -1,3 +1,4 @@
+const { Where } = require("sequelize/lib/utils")
 const models = require("../../db/models")
 
 async function findAll(req, res) {
@@ -7,7 +8,7 @@ async function findAll(req, res) {
 async function add(req, res) {
     let result = await models.Site.build(req.body)
     result.categoryId = req.params.id
-    
+
     await result.save()
     res.send(result)
 }
@@ -15,8 +16,8 @@ async function add(req, res) {
 async function deleteOne(req, res) {
     let site = await models.Site.findByPk(req.params.id)
     if (!site)
-      res.sendStatus(404)
-  
+        res.sendStatus(404)
+
     await site.destroy()
     res.sendStatus(200)
 }
@@ -25,6 +26,13 @@ async function findOne(req, res) {
     let site = await models.Site.findByPk(req.params.id)
     if (site)
         res.send(site)
+    else
+        res.sendStatus(404)
+}
+async function findCategory(req, res) {
+    let sites = await models.Site.findAll({where:{categoryId: req.params.categoryId}})
+    if (sites)
+        res.send(sites)
     else
         res.sendStatus(404)
 }
@@ -38,7 +46,7 @@ async function update(req, res) {
     site.password = req.body.password
     site.description = req.body.description
     site.updatedAt = new Date()
-  
+
     await site.save()
     res.sendStatus(200)
 }
@@ -46,6 +54,7 @@ async function update(req, res) {
 function init(app) {
     app.get('/sites', findAll)
     app.get('/sites/:id', findOne)
+    app.get('/sites/categories/:categoryId', findCategory)
     app.post('/categories/:id', add)
     app.delete('/sites/:id', deleteOne)
     app.put('/sites/:id', update)
