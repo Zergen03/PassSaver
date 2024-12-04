@@ -10,9 +10,43 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
     integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>PassSaver</title>
+</head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+    integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <title>Document</title>
 </head>
 
+  <body>
+    <div class="title">
+      <h1>Pass Saver</h1>
+      <hr class="divider">
+    </div>
+    <div class="menus">
+      <table class="categories_menu">
+        <tr>
+          <th class="menu_title">categories</th>
+        </tr>
+      </table>
+      <table class="sites_menu">
+        <tr class="menu_title">
+          <th>
+            <span class="text">Sites</span>
+          </th>
+          <th>
+            <i class="fa-solid fa-square-plus" id="0" onclick="saveCategoryId(this.id)"></i>
+          </th>
+        </tr>
+        <tr>
+          <td class="error_message">
+            <i class="fa-sharp fa-solid fa-circle-exclamation"></i>
+            <span id="errorMessage" >Select a category</span>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </body>
 <body>
   <div class="title">
     <h1>Pass Saver</h1>
