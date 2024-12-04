@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>AddSite</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='styles/main.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- <script src='scr/main.js'></script> -->
+</head>
+
+<body>
+    <form onsubmit="createSite(event)">
+        <div class="form_group">
+            <label for="url">URL:</label>
+            <input type="text" name="url" id="url" placeholder="http://facebook.com">
+        </div>
+        
+        <div class="form_group">
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" placeholder="facebook" required>
+        </div>
+        
+        <div class="form_group">
+            <label for="user">User:</label>
+            <input type="text" name="user" id="user" placeholder="Greeting">
+        </div>
+        
+        <div class="form_group">
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" placeholder="********">
+            <div class="show_password">
+                <input type="checkbox" name="show_Password" id="showPassword">
+                <label for="showPassword">Show Password</label>
+            </div>
+        </div>
+        
+        <div class="form_group">
+            <label for="description">Description:</label>
+            <textarea name="description" id="description" cols="30" rows="10"
+            placeholder="Enter your description"></textarea>
+            
+        </div>
+        
+        <div class="form_buttons">
+            <button type="button" class="cancel" onclick="window.location = './index.html'">Cancel</button>
+            <button type="submit" id="submit" class="save">Save</button>
+        </div>
+    </form>
+    
+    <script src="scr/addSite.js"></script>
+</body>
+
+</html>

@@ -19,6 +19,9 @@ let drawData = (data) => {
 }
 
 function showSites(categoryId) {
+  const addSiteButton = document. querySelector(".fa-square-plus")
+  const errorMessage = document.getElementById(categoryId)
+  document.querySelector('.error_message').style.display = 'none'
   fetch(`http://localhost:3000/sites/categories/${categoryId}`)
     .then(res => res.json())
     .then(data => drawSites(data))
@@ -28,20 +31,40 @@ function showSites(categoryId) {
       let parent = document.getElementsByTagName('table')[1]
 
       let child = document.createElement('tr')
-      child.innerText = site.name
-      child.setAttribute('id', site.id)
-      child.addEventListener('click', () => {
-        showSite(site.id)
-      })
+      let text = document.createElement('td')
+      let buttons = document.createElement('td')
+
+      child.classList.add('sites_row')
+      text.innerText = site.name
+      buttons.innerHTML = '<i class="fas fa-trash-alt"></i>'
+      buttons.innerHTML += '<i class="fas fa-edit"></i>'
+
+      child.setAttribute('id', `Site ${site.id}`)
       parent.appendChild(child)
+      child.appendChild(text)
+      child.appendChild(buttons)
     })
   }
+  addSiteButton.id = categoryId
 }
 
 function removeSites() {
   let parent = document.getElementsByTagName('table')[1]
-  let rows = parent.getElementsByTagName('tr')  
-  while (rows.length > 1) {
-    parent.removeChild(parent.removeChild(rows[1]))
+  let rows = parent.getElementsByTagName('tr')
+  while (rows.length > 2) {
+    parent.removeChild(rows[2])
   }
 }
+
+function saveCategoryId(categoryId) {
+  const element = document.getElementById(categoryId)
+  if (categoryId == 0) {
+    document.querySelector('.error_message').style.display = 'inline'
+  } else {
+    localStorage.setItem('categoryId', categoryId)
+    window.location = './addSite.html'
+  }
+}
+
+
+
