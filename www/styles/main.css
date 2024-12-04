@@ -98,6 +98,7 @@ body {
 
 .sites_row i {
   padding: 5px;
+  cursor: pointer;
 }
 
 .error_message {
@@ -115,7 +116,6 @@ form {
 .form_group {
   display: flex;
   flex-direction: column;
-  /* Cambiar a columna */
   margin-bottom: 15px;
 }
 
@@ -130,17 +130,14 @@ form {
   border-radius: 5px;
 }
 
-/* Asegurar el espaciado del botón "Show Password" */
 .show_password {
   margin-top: 10px;
-  /* Espacio entre el campo de contraseña y el checkbox */
   display: flex;
   align-items: center;
 }
 
 .show_password input {
   margin-right: 5px;
-  /* Espacio entre el checkbox y el texto */
 }
 
 .form_buttons {

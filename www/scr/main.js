@@ -36,13 +36,20 @@ function showSites(categoryId) {
 
       child.classList.add('sites_row')
       text.innerText = site.name
-      buttons.innerHTML = '<i class="fas fa-trash-alt"></i>'
-      buttons.innerHTML += '<i class="fas fa-edit"></i>'
+      let trash = document.createElement('i')
+      trash.classList.add('fas', 'fa-trash-alt')
+      trash.setAttribute('onclick', `deleteSite(${site.id})`)
+      let edit = document.createElement('i')
+      edit.classList.add('fas', 'fa-edit')
+      edit.setAttribute('onclick', `editSite(${site.id})`)
 
       child.setAttribute('id', `Site ${site.id}`)
       parent.appendChild(child)
       child.appendChild(text)
       child.appendChild(buttons)
+      buttons.appendChild(trash)
+      buttons.appendChild(edit)
+
     })
   }
   addSiteButton.id = categoryId
@@ -67,4 +74,28 @@ function saveCategoryId(categoryId) {
 }
 
 
+function deleteSite(siteId) {
+  console.log('remove sites: ' + siteId);
+  fetch(`http://localhost:3000/sites/${siteId}`, {
+    method: 'DELETE'
+  })
+    .then(res => {
+      if (!res.ok) {
+        throw new Error('Network response was not ok ' + res.statusText);
+      }
+      return res.text();
+    })
+    .then(data => {
+      console.log('Success:', data);
+      let site = document.getElementById(`Site ${siteId}`)
+      site.remove()
+    })
+    .catch(err => {
+      console.error('Error:', err);
+    });  
+}
 
+function editSite(siteId) {
+  console.log('edit sites: ' + siteId);
+  
+}
