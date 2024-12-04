@@ -15,11 +15,26 @@ function createCategory(event) {
         .then(data => {
             let parent = document.getElementsByTagName('table')[0]
             let child = document.createElement('tr')
-            child.innerText = data.name
-            child.addEventListener('click', () => {
+            let text = document.createElement('td')
+            let buttons = document.createElement('td')
+
+            child.classList.add('sites_row')
+            text.innerText = data.name
+            let trash = document.createElement('i')
+            trash.classList.add('fas', 'fa-trash-alt')
+            child.id = data.id
+
+            text.addEventListener('click', () => {
                 showSites(data.id)
             })
+            buttons.addEventListener('click', () => {
+                deleteCategory(data.id)
+            })
+
             parent.appendChild(child)
+            child.appendChild(text)
+            child.appendChild(buttons)
+            buttons.appendChild(trash)
             showCategoryModal(false)
         });
 }
