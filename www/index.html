@@ -7,43 +7,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="scr/main.js"></script>
   <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+    integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <title>Document</title>
 </head>
 
 <body>
-  <!DOCTYPE html>
-  <html lang="en">
+  <div class="title">
+    <h1>Pass Saver</h1>
+    <hr class="divider">
+  </div>
+  <div class="menus">
+    <table class="categories_menu">
+      <tr class="menu_title">
+        <th>
+          <span class="text">Categoies</span>
+        </th>
+        <th>
+          <i class="fa-solid fa-square-plus" id="0" onclick="showCategoryModal(true)"></i>
+        </th>
+      </tr>
+    </table>
+    <table class="sites_menu">
+      <tr>
+        <td class="menu_title">
+          Sites
+        </td>
+      </tr>
+    </table>
+  </div>
 
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tabla Interactiva</title>
-    <link rel="stylesheet" href="styles.css">
-  </head>
-
-  <body>
-    <div class="title">
-      <h1>Pass Saver</h1>
-      <hr class="divider">
+  <div id="categoryModal" class="modal">
+    <div class="modal-content">
+      <h2>Nueva categoría</h2>
+      <form onsubmit="createCategory(event)">
+        <label for="name">Nombre:</label>
+        <input type="text" id="categoryName" name="name" placeholder="Category name" required>
+        <div class="modal_buttons">
+          <button type="button" id="cancel" onclick="showCategoryModal(false)">Cancel</button>
+          <button type="submit" id="submit">OK</button>
+        </div>
+      </form>
     </div>
-    <div class="menus">
-      <table class="categories_menu">
-        <tr>
-          <td class="menu_title">categories</td>
-        </tr>
-      </table>
-      <table class="sites_menu">
-        <tr>
-          <td class="menu_title">
-            Sites
-          </td>
-        </tr>
-      </table>
-    </div>
-  </body>
-
-  </html>
-
+  </div>
+  <script src="scr/categories.js"></script>
 </body>
 
 </html>
