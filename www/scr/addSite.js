@@ -6,10 +6,10 @@ function createSite(event) {
     const formData = new FormData(form);
     const site = Object.fromEntries(formData.entries());
 
-    site.category_id = localStorage.getItem('categoryId');
+    const categoryId = localStorage.getItem('categoryId');
+    const match = categoryId.match(/\d+$/);
+    site.category_id = match ? match[0] : null;
     console.log('Site data:', site);
-
-
 
     fetch(`http://localhost:3000/categories/${site.category_id}`, {
         method: 'POST',

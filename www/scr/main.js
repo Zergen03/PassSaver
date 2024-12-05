@@ -6,6 +6,7 @@ let drawData = (data) => {
   console.log(data);
 
   data.forEach(category => {
+
     let parent = document.getElementsByTagName('table')[0]
     let child = document.createElement('tr')
       let text = document.createElement('td')
@@ -17,8 +18,9 @@ let drawData = (data) => {
       trash.classList.add('fas', 'fa-trash-alt')
       child.id = category.id
 
-      text.addEventListener('click', () => {
+      child.addEventListener('click', () => {
         showSites(category.id)
+        removeSites()
       })
       buttons.addEventListener('click', () => {
         deleteCategory(category.id)
@@ -53,7 +55,7 @@ function deleteCategory(categoryId) {
 }
 
 function showSites(categoryId) {
-  const addSiteButton = document. querySelector(".fa-square-plus")
+  const addSiteButton = document.querySelector('[id^="addSiteButton "]');
   const errorMessage = document.getElementById(categoryId)
   document.querySelector('.error_message').style.display = 'none'
   fetch(`http://localhost:3000/sites/categories/${categoryId}`)
@@ -77,6 +79,8 @@ function showSites(categoryId) {
       edit.classList.add('fas', 'fa-edit')
       edit.setAttribute('onclick', `editSite(${site.id})`)
 
+      
+
       child.setAttribute('id', `Site ${site.id}`)
       parent.appendChild(child)
       child.appendChild(text)
@@ -86,7 +90,7 @@ function showSites(categoryId) {
 
     })
   }
-  addSiteButton.id = categoryId
+  addSiteButton.id = `addSiteButton ${categoryId}`
 }
 
 function removeSites() {

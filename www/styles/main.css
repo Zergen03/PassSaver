@@ -23,6 +23,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  gap: 10px;
 }
 
 .categories_menu {
@@ -70,7 +71,7 @@ body {
   border-bottom: 2px solid #999999;
   box-sizing: border-box;
   height: 35px;
-  
+
 }
 
 .menu_title .text {
@@ -230,13 +231,76 @@ button:hover {
     background-color: #444;
     color: #fff;
   }
-    .sites_menu {
-        background-color: #444;
-        color: #fff;
-    }
 
-    .modal-content {
-        background-color: #333;
-        color: #fff;
-    }
+  .sites_menu {
+    background-color: #444;
+    color: #fff;
+  }
+
+  .modal-content {
+    background-color: #333;
+    color: #fff;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .menus {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+  }
+
+  .categories_menu {
+    width: 30%;
+    font-size: 2em;
+  }
+  .categories_menu tr {
+    padding: 30px;
+  }
+
+  .sites_menu {
+    width: 65%;
+    font-size: 2em;
+    padding: 10px;
+  }
+
+  .sites_menu tr {
+    padding: 30px;
+  }
+
+  .modal-content {
+    width: 30%;
+    font-size: 1.5em;
+    padding: 20px;
+    margin: auto;
+  }
+
+  .modal-content input,
+  .modal-content button {
+    font-size: 1.2em;
+    padding: 10px;
+    width: 80%;
+    box-sizing: border-box;
+  }
+
+  .modal-content button {
+    margin-top: 10px;
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .menus {
+    flex-direction: column;
+  }
+
+  .categories_menu {
+    width: 100%;
+  }
+
+  .sites_menu {
+    width: 100%;
+  }
+
 }
