@@ -60,3 +60,54 @@ document.getElementById("name").addEventListener("blur", async function () {
             }
         });
 })
+
+function showPasswordModal(display) {
+    const modal = document.getElementById('passwordModal')
+    if (display) {
+        modal.style.display = 'flex'
+    } else {
+        modal.style.display = 'none'
+    }
+}
+
+function generatePassword(event) {
+    event.preventDefault();
+    const form = event.target;
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    const lowercaseChars = 'abcdefghijklmnopqrstuvwxyz';
+    const uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const symbolChars = '!@#$%^&*()_+[]{}|;:,.<>?';
+    const numberChars = '0123456789';
+
+    let availableChars = '';
+    if (data.lowercase) availableChars += lowercaseChars;
+    if (data.capitalLetters) availableChars += uppercaseChars;
+    if (data.symbols) availableChars += symbolChars;
+    if (data.numbers) availableChars += numberChars;
+
+    if (availableChars === '') {
+        alert('Please select at least one character type!');
+        return '';
+    }
+
+    let password = '';
+    for (let i = 0; i < data.rangeValue; i++) {
+        const randomIndex = Math.floor(Math.random() * availableChars.length);
+        password += availableChars[randomIndex];
+    }
+
+    document.getElementById('password').value = password;
+    showPasswordModal(false);
+
+}
+
+function changePasswordVisibility(checked) {
+    const password = document.getElementById('password');
+    checked ? password.type = 'text' : password.type = 'password';
+}
+
+function prueba(){
+    console.log('prueba');
+}

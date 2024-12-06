@@ -209,7 +209,73 @@ button:hover {
   color: white;
 }
 
+.autogen_password_icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
 
+.autogen_password_icon input {
+  width: 100%;
+  padding-right: 30px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.autogen_password_icon i {
+  position: absolute;
+  right: 10px;
+  color: #666;
+  cursor: pointer;
+}
+
+.range_selection {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  gap: 10px;
+}
+
+.range_bar {
+  width: 90%;
+}
+
+.range_value {
+  flex: 1;
+  width: 50px;
+  text-align: center;
+  padding: 10px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.select_options {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
 
 
 @media (prefers-color-scheme: dark) {
@@ -255,6 +321,7 @@ button:hover {
     width: 30%;
     font-size: 2em;
   }
+
   .categories_menu tr {
     padding: 30px;
   }

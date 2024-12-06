@@ -19,39 +19,84 @@
             <label for="url">URL:</label>
             <input type="text" name="url" id="url" placeholder="http://facebook.com">
         </div>
-        
+
         <div class="form_group">
             <label for="name">Name:</label>
             <input type="text" name="name" id="name" placeholder="facebook" required>
         </div>
-        
+
         <div class="form_group">
             <label for="user">User:</label>
             <input type="text" name="user" id="user" placeholder="Greeting">
         </div>
-        
+
         <div class="form_group">
             <label for="password">Password:</label>
-            <input type="password" name="password" id="password" placeholder="********">
+            <div class="autogen_password_icon">
+                <input type="password" name="password" id="password" placeholder="********">
+                <i class="fa-sharp fa-solid fa-key" onclick="showPasswordModal(true)"></i>
+            </div>
             <div class="show_password">
-                <input type="checkbox" name="show_Password" id="showPassword">
+                <input type="checkbox" name="show_Password" id="showPasswordCheckbox" onclick="changePasswordVisibility(this.checked)">
                 <label for="showPassword">Show Password</label>
             </div>
         </div>
-        
+
+
         <div class="form_group">
             <label for="description">Description:</label>
             <textarea name="description" id="description" cols="30" rows="10"
-            placeholder="Enter your description"></textarea>
-            
+                placeholder="Enter your description"></textarea>
+
         </div>
-        
+
         <div class="form_buttons">
             <button type="button" class="cancel" onclick="window.location = './index.html'">Cancel</button>
             <button type="submit" id="submit" class="save">Save</button>
         </div>
     </form>
-    
+
+
+    <div id="passwordModal" class="modal">
+        <div class="modal-content">
+            <h2>Generate Safe Password</h2>
+            <form onsubmit="generatePassword(event)">
+                <label for="rangeValue">Type how many characters you want</label>
+                <div class="range_selection">
+                    <input class="range_bar" type="range" value="10" min="1" max="30"
+                        oninput="this.nextElementSibling.value = this.value" name="rangeValue" id="rangeValueInput">
+                    <input class="range_value" id="rangeValue" type="number" value="10" min="1"
+                        oninput="this.previousElementSibling.value = this.value">
+                </div>
+
+                <div class="select_options">
+                    <div class="option">
+                        <input name="lowercase" type="checkbox" id="lowercase" checked>
+                        <label for="lowercase">lowercase</label>
+                    </div>
+                    <div class="option">
+                        <input name="capitalLetters" type="checkbox" id="capitalLetters" checked>
+                        <label for="capitalLetters">capital letters</label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" name="numbers" id="numbers" checked>
+                        <label for="numbers">numbers</label>
+                    </div>
+                    <div class="option">
+                        <input name="symbols" type="checkbox" id="symbols" checked>
+                        <label for="symbols">symbols</label>
+                    </div>
+                </div>
+
+                <div class="modal_buttons">
+                    <button type="button" id="cancel" onclick="showPasswordModal(false)">Cancel</button>
+                    <button type="submit" id="submitPassword">OK</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
     <script src="scr/addSite.js"></script>
 </body>
 

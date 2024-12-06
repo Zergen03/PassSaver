@@ -103,7 +103,7 @@ function removeSites() {
 
 function saveCategoryId(categoryId) {
   const element = document.getElementById(categoryId)
-  if (categoryId == 0) {
+  if (categoryId == "addSiteButton 0") {
     document.querySelector('.error_message').style.display = 'inline'
   } else {
     localStorage.setItem('categoryId', categoryId)
