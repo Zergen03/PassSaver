@@ -103,11 +103,9 @@ function generatePassword(event) {
 
 }
 
-function changePasswordVisibility(checked) {
-    const password = document.getElementById('password');
-    checked ? password.type = 'text' : password.type = 'password';
-}
-
-function prueba(){
-    console.log('prueba');
+function changePasswordVisibility(checkbox) {
+    const parentDiv = checkbox.parentElement;
+    const passwordContainer = parentDiv.previousElementSibling;
+    const passwordField = passwordContainer.querySelector('input[type="password"], input[type="text"]');
+    passwordField.type = checkbox.checked ? 'text' : 'password';
 }

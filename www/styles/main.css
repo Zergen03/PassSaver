@@ -102,6 +102,16 @@ body {
   cursor: pointer;
 }
 
+.sites_row i:hover {
+  background-color: #f0f0f0;
+  border-radius: 5px;
+}
+
+.sites_row .site_name {
+  cursor: pointer;
+  flex-grow: 1;
+}
+
 .error_message {
   color: #ff4d4d;
   float: right;
