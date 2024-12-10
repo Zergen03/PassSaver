@@ -14,7 +14,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
   integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
   crossorigin="anonymous" referrerpolicy="no-referrer" />
-<title>Document</title>
 </head>
 
 <body>
@@ -51,9 +50,9 @@
     </table>
     <div id="categoryModal" class="modal">
       <div class="modal-content">
-        <h2>Nueva categoría</h2>
+        <h2>New Category</h2>
         <form onsubmit="createCategory(event)">
-          <label for="name">Nombre:</label>
+          <label for="name">Name:</label>
           <input type="text" id="categoryName" name="name" placeholder="Category name" required>
           <div class="modal_buttons">
             <button type="button" id="cancel" onclick="showCategoryModal(false)">Cancel</button>
@@ -64,30 +63,71 @@
     </div>
     <div id="siteModal" class="modal">
       <div class="modal-content">
+        <i class="fas fa-edit" id="siteModalEdit" onclick="changeEdit(true)"></i>
         <h2 id="siteTitle"></h2>
         <form onsubmit="editSite(event)">
           <label for="siteUrl">URL:</label>
           <input type="text" id="siteUrl" name="siteUrl" placeholder="http://facebook.com" readonly>
-          <label for="siteName">Nombre:</label>
+          <label for="siteName">Name:</label>
           <input type="text" id="siteName" name="siteName" placeholder="facebook" required readonly>
-          <label for="siteUser">Usuario:</label>
-          <input type="text" id="siteUser" name="siteUser" placeholder="Greeting" readonly>
-          <label for="password">Contraseña:</label>
+          <label for="siteUser">User:</label>
+          <div>
+            <input type="text" id="siteUser" name="siteUser" placeholder="Greeting" readonly>
+          </div>
           <div class="autogen_password_icon">
-            <input type="password" id="sitePassword" name="sitePassword" placeholder="********" readonly>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="********" readonly>
             <i class="fa-sharp fa-solid fa-key" onclick="showPasswordModal(true)"></i>
           </div>
           <div class="show_password">
             <input type="checkbox" id="siteShowPasswordCheckbox" name="siteShow_Password"
               onclick="changePasswordVisibility(this)">
-            <label for="siteShowPassword">Mostrar contraseña</label>
+            <label for="siteShowPassword">Show Password</label>
           </div>
-          <label for="siteDescription">Descripción:</label>
-          <textarea name="siteDescription" id="siteDescription" cols="30" rows="10"
-            placeholder="Enter your description" readonly></textarea>
+          <label for="siteDescription">Description:</label>
+          <textarea name="siteDescription" id="siteDescription" cols="30" rows="10" placeholder="Enter your description"
+            readonly></textarea>
           <div class="modal_buttons">
-            <button type="button" id="siteCancel" onclick="showSiteInformation(false, null)">Cancel</button>
+            <button type="button" id="siteCancel" onclick="showSiteInformation(null), changeEdit(null, false)">Cancel</button>
             <button type="submit" id="siteSubmit">OK</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div id="passwordModal" class="modal">
+      <div class="modal-content">
+        <h2>Generate Safe Password</h2>
+        <form onsubmit="generatePassword(event)">
+          <label for="rangeValue">Type how many characters you want</label>
+          <div class="range_selection">
+            <input class="range_bar" type="range" value="10" min="1" max="30"
+              oninput="this.nextElementSibling.value = this.value" name="rangeValue" id="rangeValueInput">
+            <input class="range_value" id="rangeValue" type="number" value="10" min="1"
+              oninput="this.previousElementSibling.value = this.value">
+          </div>
+
+          <div class="select_options">
+            <div class="option">
+              <input name="lowercase" type="checkbox" id="lowercase" checked>
+              <label for="lowercase">lowercase</label>
+            </div>
+            <div class="option">
+              <input name="capitalLetters" type="checkbox" id="capitalLetters" checked>
+              <label for="capitalLetters">capital letters</label>
+            </div>
+            <div class="option">
+              <input type="checkbox" name="numbers" id="numbers" checked>
+              <label for="numbers">numbers</label>
+            </div>
+            <div class="option">
+              <input name="symbols" type="checkbox" id="symbols" checked>
+              <label for="symbols">symbols</label>
+            </div>
+          </div>
+
+          <div class="modal_buttons">
+            <button type="button" id="cancel" onclick="showPasswordModal(false)">Cancel</button>
+            <button type="submit" id="submitPassword">OK</button>
           </div>
         </form>
       </div>

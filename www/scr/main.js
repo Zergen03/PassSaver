@@ -79,7 +79,7 @@ function showSites(categoryId) {
       trash.setAttribute('onclick', `deleteSite(${site.id})`)
       let edit = document.createElement('i')
       edit.classList.add('fas', 'fa-edit')
-      edit.setAttribute('onclick', `changeEdit(${site.id})`)
+      edit.setAttribute('onclick', `showSiteInformation(true, ${site.id}), changeEdit(true)`)
       let link = document.createElement('i')
       link.classList.add('fas', 'fa-link')
       link.setAttribute('onclick', `window.open('${site.url}')`)
@@ -137,24 +137,38 @@ function deleteSite(siteId) {
     });
 }
 
-function changeEdit(siteId) {
+function changeEdit(edit) {
+
   const title = document.getElementById('siteTitle')
   const url = document.getElementById('siteUrl')
   const username = document.getElementById('siteUser')
-  const password = document.getElementById('sitePassword')
+  const password = document.getElementById('password')
   const name = document.getElementById('siteName')
+  const description = document.getElementById('siteDescription')
+  const editButton = document.getElementById('siteModalEdit')
 
-  title.removeAttribute('readonly');
-  url.removeAttribute('readonly');
-  username.removeAttribute('readonly');
-  password.removeAttribute('readonly');
-  name.removeAttribute('readonly');
-
-  showSiteInformation(true, siteId)
+  if (edit) {
+    title.removeAttribute('readonly');
+    url.removeAttribute('readonly');
+    username.removeAttribute('readonly');
+    password.removeAttribute('readonly');
+    name.removeAttribute('readonly');
+    description.removeAttribute('readonly');
+    editButton.style.color = '#ccc'
+  }else{
+    title.setAttribute('readonly', true);
+    url.setAttribute('readonly', true);
+    username.setAttribute('readonly', true);
+    password.setAttribute('readonly', true);
+    name.setAttribute('readonly', true);
+    description.setAttribute('readonly', true);
+    editButton.style.color = '#007bff'
+  }
 }
 
 function showSiteInformation(display, siteId) {
   const checkbox = document.getElementById('siteShowPasswordCheckbox')
+  localStorage.setItem('siteId', siteId)
   if (display) {
     checkbox.checked = false
     changePasswordVisibility(checkbox)
@@ -168,7 +182,7 @@ function showSiteInformation(display, siteId) {
         const title = document.getElementById('siteTitle')
         const url = document.getElementById('siteUrl')
         const username = document.getElementById('siteUser')
-        const password = document.getElementById('sitePassword')
+        const password = document.getElementById('password')
         const name = document.getElementById('siteName')
         const description = document.getElementById('siteDescription')
 
@@ -188,22 +202,24 @@ function showSiteInformation(display, siteId) {
   }
 }
 
-function editSite(siteId) {
-  const title = document.getElementById('siteTitle')
-  const url = document.getElementById('siteUrl')
-  const username = document.getElementById('siteUser')
-  const password = document.getElementById('sitePassword')
-  const name = document.getElementById('siteName')
+function editSite(event) {
+  // event.preventDefault();
+  const siteId = localStorage.getItem('siteId')
+  const form = event.target
+  const formData = new FormData(form);
+  const data = Object.fromEntries(formData.entries());
+
   fetch(`http://localhost:3000/sites/${siteId}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      name: name.value,
-      url: url.value,
-      user: username.value,
-      password: password.value
+      name: data.siteName,
+      url: data.siteUrl,
+      user: data.siteUser,
+      password: data.password,
+      description: data.siteDescription
     })
   })
     .then(res => {
@@ -214,11 +230,6 @@ function editSite(siteId) {
     })
     .then(data => {
       console.log('Success:', data);
-      title.setAttribute('readonly', true);
-      url.setAttribute('readonly', true);
-      username.setAttribute('readonly', true);
-      password.setAttribute('readonly', true);
-      name.setAttribute('readonly', true);
     })
     .catch(err => {
       console.error('Error:', err);

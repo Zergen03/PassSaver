@@ -24,8 +24,9 @@ function createCategory(event) {
             trash.classList.add('fas', 'fa-trash-alt')
             child.id = data.id
 
-            text.addEventListener('click', () => {
+            child.addEventListener('click', () => {
                 showSites(data.id)
+                removeSites()
             })
             buttons.addEventListener('click', () => {
                 deleteCategory(data.id)
@@ -71,6 +72,7 @@ document.getElementById('categoryName').addEventListener('input', function () {
 });
 
 function showCategoryModal(display) {
+    document.getElementById('categoryName').value = ''
     const modal = document.getElementById('categoryModal')
     if (display) {
         modal.style.display = 'flex'
