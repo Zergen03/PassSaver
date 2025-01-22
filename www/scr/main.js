@@ -2,18 +2,23 @@ fetch("http://localhost:3000/categories")
   .then(res => res.json())
   .then(data => drawData(data))
 
-let drawData = (data) => {
-  console.log(data);
-
-  data.forEach(category => {
-
+let drawData = async (data) => {
+  for (const category of data) {
     let parent = document.getElementsByTagName('table')[0]
     let child = document.createElement('tr')
     let text = document.createElement('td')
+    let image = document.createElement('td')
     let buttons = document.createElement('td')
 
     child.classList.add('sites_row')
     text.innerText = category.name
+    let exist = await checkImageExist(category.name);
+    if (exist) {
+      image.innerHTML = `<img src="../uploads/${category.name}.jpg" alt="Imagen de ${category.name}">`;
+    } else {
+      image.innerHTML = ` `;
+    }
+    image.classList.add('category_image')
     let trash = document.createElement('i')
     trash.classList.add('fas', 'fa-trash-alt')
     child.id = category.id
@@ -27,10 +32,11 @@ let drawData = (data) => {
     })
 
     parent.appendChild(child)
+    child.appendChild(image)
     child.appendChild(text)
     child.appendChild(buttons)
     buttons.appendChild(trash)
-  })
+  }
 }
 
 function deleteCategory(categoryId) {
@@ -155,7 +161,7 @@ function changeEdit(edit) {
     name.removeAttribute('readonly');
     description.removeAttribute('readonly');
     editButton.style.color = '#ccc'
-  }else{
+  } else {
     title.setAttribute('readonly', true);
     url.setAttribute('readonly', true);
     username.setAttribute('readonly', true);
@@ -236,3 +242,17 @@ function editSite(event) {
     });
 }
 
+async function checkImageExist(name) {
+  return fetch(`http://localhost:3000/uploads/${name}.jpg`)
+    .then(res => {
+      if (res.ok) {
+        return true;
+      } else {
+        return false;
+      }
+    })
+    .catch(err => {
+      console.warn('Error:', err);
+      return false;
+    });
+}

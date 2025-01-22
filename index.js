@@ -4,6 +4,7 @@ const cors = require("cors")
 const db = require("./db/models/index.js")
 const categoriesController = require("./src/categories/category.controller.js")
 const sitesController = require("./src/categories/sites.controller.js")
+const imageController = require("./src/categories/image.controller.js")
 
 
 const app = express()
@@ -22,6 +23,9 @@ app.listen(port, () => {
 
   categoriesController.init(app)
   sitesController.init(app)
+  imageController.init(app)
+  console.log("controlador cargado: " + imageController);
+  
 })
 
 

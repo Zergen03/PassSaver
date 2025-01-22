@@ -25,7 +25,7 @@
     <table class="categories_menu">
       <tr class="menu_title">
         <th>
-          <span class="text">Categoies</span>
+          <span class="text">Categories</span>
         </th>
         <th>
           <i class="fa-solid fa-square-plus" id="0" onclick="showCategoryModal(true)"></i>
@@ -54,6 +54,7 @@
         <form onsubmit="createCategory(event)">
           <label for="name">Name:</label>
           <input type="text" id="categoryName" name="name" placeholder="Category name" required>
+          <input type="file" id="categoryImage" name="image" accept="image/*">
           <div class="modal_buttons">
             <button type="button" id="cancel" onclick="showCategoryModal(false)">Cancel</button>
             <button type="submit" id="submit">OK</button>
